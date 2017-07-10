@@ -25,7 +25,7 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   # TODO: Reduce this value.
-  Max: 91
+  Max: 100
 
 RSpec/DescribeClass:
   Exclude:

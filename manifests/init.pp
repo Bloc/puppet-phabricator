@@ -21,6 +21,10 @@
 # @param config_hash Phabricator configuration. See
 #   {https://secure.phabricator.com/book/phabricator/article/advanced_configuration/
 #   Configuration User Guide: Advanced Configuration}.
+# @param manage_diffusion Whether to configure the host in order to be able to
+#   serve (either directly or by proxying to another host in the cluster). See
+#   {https://secure.phabricator.com/book/phabricator/article/diffusion_hosting/
+#   Diffusion User Guide: Repository Hosting}.
 # @param storage_upgrade A flag to enable storage upgrades. See
 #   {https://secure.phabricator.com/book/phabricator/article/configuration_guide/#storage-configuring-mysql
 #   Storage: Configuring MySQL}.
@@ -34,22 +38,30 @@
 # @param install_dir
 # @param logs_dir
 # @param pid_dir
+# @param repo_dir
 # @param vcs_user
 #
 class phabricator(
+  #
   Phabricator::Revision $arcanist_revision,
   Phabricator::Revision $libphutil_revision,
   Phabricator::Revision $phabricator_revision,
+
   Hash[String, Data] $config_hash,
+  Boolean $manage_diffusion,
+
+  # Storage upgrade
   Boolean $storage_upgrade,
   Optional[String] $storage_upgrade_user,
   Optional[String] $storage_upgrade_password,
 
+  # Internal parameters
   String $daemon_user,
   String $group,
   Stdlib::Unixpath $install_dir,
   Stdlib::Unixpath $logs_dir,
   Stdlib::Unixpath $pid_dir,
+  Stdlib::Unixpath $repo_dir,
   String $vcs_user,
 ) {
   if $storage_upgrade {
@@ -66,6 +78,7 @@ class phabricator(
       'phd.log-directory' => $logs_dir,
       'phd.pid-directory' => $pid_dir,
       'phd.user' => $daemon_user,
+      'repository.default-local-path' => $repo_dir,
     }
   )
 
