@@ -6,10 +6,7 @@
 class phabricator::config {
   assert_private()
 
-  # TODO: This is dirty, but otherwise `$php::fpm` may not be defined.
-  class { '::php':
-    ensure => latest
-  }
+  include php
 
   if $php::fpm {
     $notify = Class['php::fpm::service']
