@@ -31,7 +31,7 @@ class phabricator::install {
 
   vcsrepo {
     default:
-      ensure   => 'latest',
+      ensure   => present,
       provider => 'git',
       notify   => $notify;
 
