@@ -52,7 +52,6 @@ class phabricator::daemons(
     require   => [
       Exec['systemctl-daemon-reload'],
       File[$phabricator::logs_dir],
-      File[$phabricator::pid_dir],
       Group[$phabricator::group],
       User[$phabricator::daemon_user],
     ],
