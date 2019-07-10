@@ -211,7 +211,6 @@ RSpec.describe 'phabricator', type: :class do
                 'log.access.path' => '/var/log/phabricator/access.log',
                 'log.ssh.path' => '/var/log/phabricator/ssh.log',
                 'phd.log-directory' => '/var/log/phabricator',
-                'phd.pid-directory' => '/run/phabricator',
                 'phd.user' => 'phd',
                 'repository.default-local-path' => '/var/repo',
               )
@@ -242,7 +241,6 @@ RSpec.describe 'phabricator', type: :class do
                 'mysql.user' => config_hash['mysql.user'],
                 'mysql.pass' => config_hash['mysql.pass'],
                 'phd.log-directory' => '/var/log/phabricator',
-                'phd.pid-directory' => '/run/phabricator',
                 'phd.user' => 'phd',
                 'repository.default-local-path' => '/var/repo',
               )
