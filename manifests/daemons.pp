@@ -47,7 +47,7 @@ class phabricator::daemons(
   # documentation the default value is `false`, although I am somewhat
   # surprised by this.
   service { 'phd':
-    ensure    => 'stopped',
+    ensure    => 'running',
     enable    => true,
     require   => [
       Exec['systemctl-daemon-reload'],
